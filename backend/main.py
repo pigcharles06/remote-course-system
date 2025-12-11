@@ -333,8 +333,8 @@ async def generate_and_upload_to_drive(
             f.write(doc_bytes)
         print(f"[GENERATE] Saved to: {file_path}")
         
-        # Return download URL (relative to backend)
-        download_url = f"http://localhost:8000/downloads/{safe_filename}"
+        # Return download URL (use relative path for frontend to handle)
+        download_url = f"/downloads/{safe_filename}"
         
         return {
             "success": True,
