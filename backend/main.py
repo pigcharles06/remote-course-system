@@ -16,7 +16,7 @@ import word_generator
 
 models.Base.metadata.create_all(bind=database.engine)
 
-app = FastAPI(title="Remote Course System API")
+app = FastAPI(title="Remote Course System API", redirect_slashes=False)
 
 # Create downloads directory if not exists
 DOWNLOADS_DIR = os.path.join(os.path.dirname(__file__), "downloads")
