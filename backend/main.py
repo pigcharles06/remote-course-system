@@ -137,7 +137,7 @@ def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
 async def read_users_me(current_user: models.User = Depends(get_current_user)):
     return current_user
 
-@app.post("/api/applications/", response_model=schemas.Application)
+@app.post("/api/applications", response_model=schemas.Application)
 def create_application(
     application: schemas.ApplicationCreate, 
     db: Session = Depends(get_db),
@@ -145,7 +145,7 @@ def create_application(
 ):
     return crud.create_application(db=db, application=application, user_id=current_user.id)
 
-@app.get("/api/applications/", response_model=List[schemas.Application])
+@app.get("/api/applications", response_model=List[schemas.Application])
 def read_applications(
     skip: int = 0, 
     limit: int = 100, 
