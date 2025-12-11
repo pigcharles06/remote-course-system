@@ -1,0 +1,18 @@
+Testing placeholder extraction...
+Found 153 placeholders
+
+Testing file upload...
+PDF: genai.File({
+    'name': 'files/ve5e5r7nw1v9',
+    'display_name': 'sample_format.pdf',
+    'mime_type': 'application/pdf',
+    'sha256_hash': 'YmNiNGE3NWI2MTc4ZjllYjU1Y2FhNzE5NTMxNTRmYzJkNmMwZWE5NWI1NmE4YTc0Mzk5M2E2OGU3YmM4MzgyNA==',
+    'size_bytes': '363146',
+    'state': 'ACTIVE',
+    'uri': 'https://generativelanguage.googleapis.com/v1beta/files/ve5e5r7nw1v9',
+    'create_time': '2025-12-06T03:21:54.540701Z',
+    'expiration_time': '2025-12-08T03:21:53.230445592Z',
+    'update_time': '2025-12-06T03:21:54.540701Z'})
+
+Testing full generation...
+Generated 41922 bytes
