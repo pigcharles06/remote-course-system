@@ -50,7 +50,7 @@ def init_demo_users():
                 email="test@example.com",
                 hashed_password=security.get_password_hash("password"),
                 name="Demo Teacher",
-                role="teacher",
+                role="TEACHER",
                 department="資訊工程系"
             )
             db.add(teacher)
@@ -60,7 +60,7 @@ def init_demo_users():
                 email="admin@example.com",
                 hashed_password=security.get_password_hash("password"),
                 name="Demo Admin",
-                role="admin",
+                role="ADMIN",
                 department="教務處"
             )
             db.add(admin)
@@ -70,7 +70,7 @@ def init_demo_users():
                 email="reviewer@example.com",
                 hashed_password=security.get_password_hash("password"),
                 name="Demo Reviewer",
-                role="reviewer",
+                role="REVIEWER",
                 department="教學發展中心"
             )
             db.add(reviewer)
