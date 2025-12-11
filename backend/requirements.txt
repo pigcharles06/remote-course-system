@@ -8,3 +8,5 @@ python-dotenv
 pdfplumber
 python-docx
 google-generativeai
+email-validator
+pydantic[email]
