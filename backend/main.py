@@ -25,15 +25,64 @@ os.makedirs(DOWNLOADS_DIR, exist_ok=True)
 # Mount static files for downloads
 app.mount("/downloads", StaticFiles(directory=DOWNLOADS_DIR), name="downloads")
 
-# CORS
+# CORS - Allow all origins for production
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=["*"],  # Allow all origins for testing
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
     expose_headers=["Content-Disposition"],
 )
+
+
+# Initialize demo users on startup
+@app.on_event("startup")
+def init_demo_users():
+    db = database.SessionLocal()
+    try:
+        # Check if demo user exists
+        existing_user = db.query(models.User).filter(models.User.email == "test@example.com").first()
+        if not existing_user:
+            print("[STARTUP] Creating demo users...")
+            # Create teacher demo user
+            teacher = models.User(
+                email="test@example.com",
+                hashed_password=security.get_password_hash("password"),
+                name="Demo Teacher",
+                role="teacher",
+                department="資訊工程系"
+            )
+            db.add(teacher)
+            
+            # Create admin demo user
+            admin = models.User(
+                email="admin@example.com",
+                hashed_password=security.get_password_hash("password"),
+                name="Demo Admin",
+                role="admin",
+                department="教務處"
+            )
+            db.add(admin)
+            
+            # Create reviewer demo user
+            reviewer = models.User(
+                email="reviewer@example.com",
+                hashed_password=security.get_password_hash("password"),
+                name="Demo Reviewer",
+                role="reviewer",
+                department="教學發展中心"
+            )
+            db.add(reviewer)
+            
+            db.commit()
+            print("[STARTUP] Demo users created successfully!")
+        else:
+            print("[STARTUP] Demo users already exist.")
+    except Exception as e:
+        print(f"[STARTUP] Error creating demo users: {e}")
+    finally:
+        db.close()
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/token")
 
