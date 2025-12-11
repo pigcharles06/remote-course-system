@@ -125,8 +125,8 @@ export default function TeacherDashboard() {
                                                     const controller = new AbortController();
                                                     const timeoutId = setTimeout(() => controller.abort(), 600000); // 10 min timeout
 
-                                                    // Call backend directly to bypass Next.js proxy timeout
-                                                    const res = await fetch(`http://localhost:8000/api/applications/${app.id}/generate-upload`, {
+                                                    // Call API endpoint
+                                                    const res = await fetch(`/api/applications/${app.id}/generate-upload`, {
                                                         method: 'POST',
                                                         headers: {
                                                             Authorization: `Bearer ${token}`,
